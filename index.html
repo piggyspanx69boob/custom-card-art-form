@@ -1,129 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Card Art Inquiry</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: #ffffff;
-            padding: 2rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            margin-top: 0;
-            text-align: center;
-            color: #444;
-        }
-        label {
-            display: block;
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 0.5rem;
-            margin-top: 0.25rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        textarea {
-            height: 80px;
-            resize: vertical;
-        }
-        .optional {
-            font-weight: normal;
-            color: #666;
-        }
-        button {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .note {
-            font-size: 0.9rem;
-            color: #555;
-            margin-top: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Custom Card Art Inquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827, #020617);
+      color: #e5e7eb;
+      line-height: 1.5;
+    }
+
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 880px;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 16px;
+      padding: 24px 20px 32px;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(148, 163, 184, 0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 32px 32px 40px;
+      }
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.8rem;
+      color: #f9fafb;
+    }
+
+    .subtitle {
+      margin: 0 0 20px;
+      font-size: 0.98rem;
+      color: #cbd5f5;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .optional {
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #f9fafb;
+      padding: 8px 10px;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 42px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    textarea {
+      min-height: 80px;
+    }
+
+    input[type="text"]::placeholder {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.5);
+      background: #020617;
+    }
+
+    button[type="submit"] {
+      margin-top: 8px;
+      align-self: flex-start;
+      border: none;
+      border-radius: 9999px;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 14px 35px rgba(34, 197, 94, 0.45);
+    }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .note {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: #9ca3af;
+    }
+
+    .required-hint {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .field-group {
+      margin-bottom: 4px;
+    }
+
+    .question-number {
+      font-weight: 600;
+      color: #a5b4fc;
+      margin-right: 4px;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrapper">
     <div class="container">
-        <h1>Custom Card Art Inquiry</h1>
-        <p>
-            This form collects stories and observations about the custom card art community. Your responses will be submitted securely to the inquiry team. Please answer as honestly and completely as you can. Fields marked “Optional” can be left blank.
+      <h1>Custom Card Art Inquiry</h1>
+      <p class="subtitle">
+        This form collects stories and observations about the custom card art community.
+        Your responses will be submitted securely to the inquiry team.
+        Please answer as honestly and completely as you can.
+        Fields marked <span class="optional">(Optional)</span> can be left blank.
+      </p>
+      <p class="required-hint">
+        Questions 1–10 are required so the stories stay useful when we line them up later.
+      </p>
+
+      <!-- 🔴 This is the only form element – wired directly to Formspree -->
+      <form
+        id="inquiryForm"
+        action="https://formspree.io/f/mqavdejp"
+        method="POST"
+      >
+        <!-- Optional artist name -->
+        <div class="field-group">
+          <label for="artistName">
+            Artist Name <span class="optional">(Optional)</span>
+          </label>
+          <input
+            type="text"
+            id="artistName"
+            name="artistName"
+            placeholder="Your name or handle"
+          />
+        </div>
+
+        <!-- Q1 -->
+        <div class="field-group">
+          <label for="q1">
+            <span class="question-number">1.</span>
+            How did you first discover custom card art?
+          </label>
+          <textarea id="q1" name="q1" required></textarea>
+        </div>
+
+        <!-- Q2 -->
+        <div class="field-group">
+          <label for="q2">
+            <span class="question-number">2.</span>
+            Which early creators influenced or inspired you?
+          </label>
+          <textarea id="q2" name="q2" required></textarea>
+        </div>
+
+        <!-- Q3 -->
+        <div class="field-group">
+          <label for="q3">
+            <span class="question-number">3.</span>
+            How would you describe the community vibe when you started?
+          </label>
+          <textarea id="q3" name="q3" required></textarea>
+        </div>
+
+        <!-- Q4 -->
+        <div class="field-group">
+          <label for="q4">
+            <span class="question-number">4.</span>
+            Have you ever seen artists not get proper credit for their contributions?
+          </label>
+          <textarea id="q4" name="q4" required></textarea>
+        </div>
+
+        <!-- Q5 -->
+        <div class="field-group">
+          <label for="q5">
+            <span class="question-number">5.</span>
+            Do you think the hobby has become more hype-driven or political over time?
+          </label>
+          <textarea id="q5" name="q5" required></textarea>
+        </div>
+
+        <!-- Q6 -->
+        <div class="field-group">
+          <label for="q6">
+            <span class="question-number">6.</span>
+            How do you feel about transparency in the custom card art space?
+          </label>
+          <textarea id="q6" name="q6" required></textarea>
+        </div>
+
+        <!-- Q7 -->
+        <div class="field-group">
+          <label for="q7">
+            <span class="question-number">7.</span>
+            Have you ever noticed suspicious or inconsistent auction behavior in the
+            custom card market?
+          </label>
+          <textarea id="q7" name="q7" required></textarea>
+        </div>
+
+        <!-- Q8 -->
+        <div class="field-group">
+          <label for="q8">
+            <span class="question-number">8.</span>
+            Do you feel comfortable voicing honest opinions in the community?
+          </label>
+          <textarea id="q8" name="q8" required></textarea>
+        </div>
+
+        <!-- Q9 -->
+        <div class="field-group">
+          <label for="q9">
+            <span class="question-number">9.</span>
+            Have you ever held back criticism or questions to avoid backlash?
+          </label>
+          <textarea id="q9" name="q9" required></textarea>
+        </div>
+
+        <!-- Q10 -->
+        <div class="field-group">
+          <label for="q10">
+            <span class="question-number">10.</span>
+            What do you think a healthy, fair, and transparent card art ecosystem should look like?
+          </label>
+          <textarea id="q10" name="q10" required></textarea>
+        </div>
+
+        <!-- Q11 optional bonus -->
+        <div class="field-group">
+          <label for="q11">
+            <span class="question-number">11. OPTIONAL BONUS:</span>
+            Have you ever felt iced out, unfollowed, or sidelined after interacting with
+            certain creators or groups? <span class="optional">(Optional)</span>
+          </label>
+          <textarea id="q11" name="q11"></textarea>
+        </div>
+
+        <!-- Optional: subject line for the Formspree email -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="New Custom Card Art Inquiry Submission"
+        />
+
+        <button type="submit">Submit Responses</button>
+        <p class="note">
+          After you click “Submit Responses,” you should see a confirmation page from the
+          form service. If anything looks weird, grab a screenshot so you can debug it later.
         </p>
-
-        <form
-            id="inquiryForm"
-            action="https://formspree.io/f/mqavdejp"
-            method="POST"
-        >
-            <label for="artistName">Artist Name <span class="optional">(Optional)</span></label>
-            <input type="text" id="artistName" name="artistName" placeholder="Your name or handle">
-
-            <label for="q1">1. How did you first discover custom card art?</label>
-            <textarea id="q1" name="q1" required></textarea>
-
-            <label for="q2">2. Which early creators influenced or inspired you?</label>
-            <textarea id="q2" name="q2" required></textarea>
-
-            <label for="q3">3. How would you describe the community vibe when you started?</label>
-            <textarea id="q3" name="q3" required></textarea>
-
-            <label for="q4">4. Have you ever seen artists not get proper credit for their contributions?</label>
-            <textarea id="q4" name="q4" required></textarea>
-
-            <label for="q5">5. Do you think the hobby has become more hype-driven or political over time?</label>
-            <textarea id="q5" name="q5" required></textarea>
-
-            <label for="q6">6. How do you feel about transparency in the custom card art space?</label>
-            <textarea id="q6" name="q6" required></textarea>
-
-            <label for="q7">7. Have you ever noticed suspicious or inconsistent auction behavior in the custom card market?</label>
-            <textarea id="q7" name="q7" required></textarea>
-
-            <label for="q8">8. Do you feel comfortable voicing honest opinions in the community?</label>
-            <textarea id="q8" name="q8" required></textarea>
-
-            <label for="q9">9. Have you ever held back criticism or questions to avoid backlash?</label>
-            <textarea id="q9" name="q9" required></textarea>
-
-            <label for="q10">10. What do you think a healthy, fair, and transparent card art ecosystem should look like?</label>
-            <textarea id="q10" name="q10" required></textarea>
-
-            <label for="q11">
-                11. OPTIONAL BONUS: Have you ever felt iced out, unfollowed, or sidelined after interacting with certain creators or groups?
-                <span class="optional">(Optional)</span>
-            </label>
-            <textarea id="q11" name="q11"></textarea>
-
-            <button type="submit">Submit Responses</button>
-            <p class="note">
-                After you click “Submit Responses,” you should see a confirmation message. If anything looks off, screenshot it so you can troubleshoot later.
-            </p>
-        </form>
+      </form>
     </div>
+  </div>
 </body>
 </html>
